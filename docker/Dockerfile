@@ -1,4 +1,9 @@
-FROM python:3.10-slim-buster
+FROM python:3.10
+
+RUN apt-get update && \
+	DEBIAN_FRONTEND=noninteractive apt-get -y install \
+		rustc && \
+	rm -rf /var/lib/apt/lists/*
 
 # Install pinned poetry version.
 RUN pip install --no-cache-dir 'poetry==1.3.1'
