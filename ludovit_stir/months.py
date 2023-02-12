@@ -1,3 +1,5 @@
+import string
+
 from unidecode import unidecode
 
 CZ_TO_SK_MONTHS = {
@@ -53,12 +55,21 @@ CZ_TO_SK_NORM = {unidecode(k).lower(): v for k, v in CZ_TO_SK_MONTHS.items()}
 SK_TO_CZ_NORM = {unidecode(k).lower(): v for k, v in SK_TO_CZ_MONTHS.items()}
 
 
+def remove_punctuation(text: str) -> str:
+    """Removes punctuation from a string."""
+    new_text = str(text)
+    for char in string.punctuation:
+        new_text = new_text.replace(char, " ")
+
+    return new_text
+
+
 def check_for_months(text: str) -> tuple[list[str], list[str]]:
     """Check for slovak and czech versions of month names in the text."""
     slovak_months = []
     czech_months = []
 
-    for word in text.split():
+    for word in remove_punctuation(text).split():
         norm = unidecode(word).lower()
         if norm in SK_TO_CZ_NORM:
             slovak_months.append(word)
