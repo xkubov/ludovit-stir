@@ -2,6 +2,8 @@
 
 A convenient Slovak/Czech Translation Telegram Bot
 
+Convenient but hloupy :(
+
 ## How to develop
 
 This package uses [poetry](https://python-poetry.org). To install Nerd Assistant (and its dependencies), use:
